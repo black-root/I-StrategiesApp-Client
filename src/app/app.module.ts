@@ -7,11 +7,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
+import {AngularMaterialModule} from './angular-material.module';
+import { RegistrosComponent } from './components/registros/registros.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { MantenimientoPersonasComponent } from './components/mantenimiento-personas/mantenimiento-personas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrosComponent,
+    MantenimientoPersonasComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +25,9 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

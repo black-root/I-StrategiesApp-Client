@@ -1,0 +1,102 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Mantenimiento Personas</mat-card-title>
+    </mat-card-header>
+
+
+    <form class="example-form">
+      <mat-card-content>
+
+          <table>
+            <td>
+              <mat-form-field class="example-70">
+                <mat-label>Id Persona</mat-label>
+                <input type="number" matInput [(ngModel)]="idPersona">
+              </mat-form-field>
+            </td>
+            <td>
+              <button mat-stroked-button color="accent">Buscar</button>
+            </td>
+          </table>
+
+
+        <mat-divider></mat-divider>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre 1</mat-label>
+          <input matInput [formControl]="primerNombreFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ej. Jose">
+          <mat-hint>Campo oblitgatorio!</mat-hint>
+          <mat-error
+            *ngIf="primerNombreFormControl.hasError('primer nombre') && !primerNombreFormControl.hasError('required')">
+            Porfavor ingrese un Primer Nombre
+          </mat-error>
+          <mat-error *ngIf="primerNombreFormControl.hasError('required')">
+            Primer Nombre es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre 2</mat-label>
+          <input matInput placeholder="Ej. Luis">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido 1</mat-label>
+          <input matInput [formControl]="primerApellidoFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ej. Perez">
+          <mat-hint>Campo oblitgatorio!</mat-hint>
+          <mat-error
+            *ngIf="primerApellidoFormControl.hasError('primer apellido') && !primerApellidoFormControl.hasError('required')">
+            Porfavor ingrese un Primer Apellido
+          </mat-error>
+          <mat-error *ngIf="primerApellidoFormControl.hasError('required')">
+            Primer Apellido es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido 2</mat-label>
+          <input matInput placeholder="Ej. Hernandez">
+        </mat-form-field>
+
+        <mat-form-field color="primary" appearance="fill" class="example-full-width">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker1">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Sexo</mat-label>
+          <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+            <mat-option>Seleciona un sexo</mat-option>
+            <mat-option value="valid">Hombre</mat-option>
+            <mat-option value="valid">Mujer</mat-option>
+          </mat-select>
+          <mat-hint>Campo obligatorio!</mat-hint>
+          <mat-error *ngIf="selected.hasError('required')">Debes selecionar un sexo</mat-error>
+          <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+            Tu selecion es invalida
+          </mat-error>
+        </mat-form-field >
+
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Informacion Adicional</mat-label>
+          <textarea matInput></textarea>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        <section>
+          <div class="example-button-row">
+            <button mat-stroked-button color="accent">Crear</button>
+            <button mat-stroked-button color="accent">Actualizar</button>
+            <button mat-stroked-button color="warn">Eliminar</button>
+          </div>
+        </section>
+      </mat-card-content>
+    </form>
+
+  </mat-card>
+</div>

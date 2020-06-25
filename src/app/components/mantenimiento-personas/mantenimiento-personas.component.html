@@ -1,0 +1,60 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Mantenimiento Personas</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input type="number" matInput placeholder="Id Persona">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <button mat-stroked-button color="primary">Buscar</button>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput placeholder="Nombre 1">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput placeholder="Nombre 2">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput placeholder="Apellido 1">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput placeholder="Apellido 2">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento">
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-stroked-button (click)="picker.open()">Escoger Fecha</button>
+        <br>
+        <mat-form-field>
+          <mat-label>Sexo</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="food">
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <section>
+        <div class="example-button-row">
+          <button mat-stroked-button color="accent">Crear</button>
+          <button mat-stroked-button color="accent">Actualizar</button>
+          <button mat-stroked-button color="warn">Eliminar</button>
+        </div>
+      </section>
+    </form>
+  </mat-card>
+</div>
+
