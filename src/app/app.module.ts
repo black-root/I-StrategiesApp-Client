@@ -11,6 +11,9 @@ import {AngularMaterialModule} from './angular-material.module';
 import { RegistrosComponent } from './components/registros/registros.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MantenimientoPersonasComponent } from './components/mantenimiento-personas/mantenimiento-personas.component';
+import {LoginService} from './services/login.service';
+import {VerifyIsLoggedService} from './services/verifyIsLogged.service';
+import {PersonaService} from './services/persona.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,7 @@ import { MantenimientoPersonasComponent } from './components/mantenimiento-perso
     AngularMaterialModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [LoginService, VerifyIsLoggedService, PersonaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

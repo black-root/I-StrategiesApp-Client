@@ -1,12 +1,18 @@
-.example-button-row {
-  display: table-cell;
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
-.example-button-row button {
-  display: table-cell;
-  margin-right: 8px;
+.example-full-width {
+  width: 100%;
 }
-section {
+
+.example-70 {
+  width: 70%;
+}
+
+.section {
   display: table;
   margin: 8px;
 }

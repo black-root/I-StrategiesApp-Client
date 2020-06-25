@@ -4,57 +4,96 @@
       <mat-card-title>Mantenimiento Personas</mat-card-title>
     </mat-card-header>
 
+
     <form class="example-form">
-
       <mat-card-content>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <input type="number" matInput placeholder="Id Persona">
+
+        <table>
+          <td>
+            <mat-form-field class="example-70">
+              <mat-label>Id Persona</mat-label>
+              <input type="number" matInput [(ngModel)]="idPersona"  [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-stroked-button color="accent" (click)="onBuscarById()">Buscar</button>
+          </td>
+        </table>
+
+
+        <mat-divider></mat-divider>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre 1</mat-label>
+          <input matInput [formControl]="primerNombreFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ej. Jose" [(ngModel)]="persona.primerNombre" >
+          <mat-hint>Campo oblitgatorio!</mat-hint>
+          <mat-error
+            *ngIf="primerNombreFormControl.hasError('primer nombre') && !primerNombreFormControl.hasError('required')">
+            Porfavor ingrese un Primer Nombre
+          </mat-error>
+          <mat-error *ngIf="primerNombreFormControl.hasError('required')">
+            Primer Nombre es <strong>requerido</strong>
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-          <button mat-stroked-button color="primary">Buscar</button>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <input matInput placeholder="Nombre 1">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <input matInput placeholder="Nombre 2">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <input matInput placeholder="Apellido 1">
-        </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <input matInput placeholder="Apellido 2">
-        </mat-form-field>
-        <br>
         <mat-form-field class="example-full-width">
-          <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento">
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-label>Nombre 2</mat-label>
+          <input matInput placeholder="Ej. Luis" [(ngModel)]="persona.segundoNombre" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
-        <button mat-stroked-button (click)="picker.open()">Escoger Fecha</button>
-        <br>
-        <mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido 1</mat-label>
+          <input matInput [formControl]="primerApellidoFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ej. Perez" [(ngModel)]="persona.primerApellido">
+          <mat-hint>Campo oblitgatorio!</mat-hint>
+          <mat-error
+            *ngIf="primerApellidoFormControl.hasError('primer apellido') && !primerApellidoFormControl.hasError('required')">
+            Porfavor ingrese un Primer Apellido
+          </mat-error>
+          <mat-error *ngIf="primerApellidoFormControl.hasError('required')">
+            Primer Apellido es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido 2</mat-label>
+          <input matInput placeholder="Ej. Hernandez" [(ngModel)]="persona.segundoApellido" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+
+        <mat-form-field color="primary" appearance="fill" class="example-full-width">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="persona.fechaNacimiento" [ngModelOptions]="{standalone: true}">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
           <mat-label>Sexo</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="food">
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-              {{food.viewValue}}
-            </mat-option>
+          <mat-select [(ngModel)]="selectedSexo" name="sexo">
+            <mat-option value="1">Hombre</mat-option>
+            <mat-option value="2">Mujer</mat-option>
           </mat-select>
+          <mat-hint>Campo obligatorio!</mat-hint>
+        </mat-form-field >
+
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Informacion Adicional</mat-label>
+          <textarea matInput [(ngModel)]="persona.informacionAdicional" name="info"></textarea>
         </mat-form-field>
+
+        <mat-divider></mat-divider>
+        <section>
+          <div class="example-button-row">
+            <button mat-stroked-button color="accent" (click)="onCrearPersona()" [disabled]="habilitarEditarEliminar">Crear</button>
+            <button mat-stroked-button color="accent" (click)="onActualizarPersona()" [disabled]="!habilitarEditarEliminar" >Actualizar</button>
+            <button mat-stroked-button color="warn" [disabled]="!habilitarEditarEliminar" >Eliminar</button>
+          </div>
+        </section>
       </mat-card-content>
-      <mat-divider></mat-divider>
-      <section>
-        <div class="example-button-row">
-          <button mat-stroked-button color="accent">Crear</button>
-          <button mat-stroked-button color="accent">Actualizar</button>
-          <button mat-stroked-button color="warn">Eliminar</button>
-        </div>
-      </section>
     </form>
+
   </mat-card>
 </div>
+
 
