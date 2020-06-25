@@ -26,7 +26,7 @@ export class PersonaService {
       response => {
         console.log('Resultado guardar persona ');
         console.log(response);
-      }, error => console.log('Error al guardar persona ' + error)
+      }, error => console.log(error)
     );
   }
 
@@ -37,6 +37,16 @@ export class PersonaService {
         console.log('Resultado Actualizar persona ');
         console.log(response);
       }, error => console.log('Error al Actualizar persona ' + error)
+    );
+  }
+
+  deletePersona(id: any) {
+    // @ts-ignore
+    this.httpClient.delete(`${this.URL}/${id}`).subscribe(
+      response => {
+        console.log('Resultado Eliminar por id persona ');
+        console.log(response);
+      }, error => console.log('Error al Eliminar por id persona ' + error)
     );
   }
 

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@a
 import {ErrorStateMatcher} from '@angular/material/core';
 import {Personas} from '../../entities/persona.model';
 import {PersonaService} from '../../services/persona.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-mantenimiento-personas',
@@ -11,7 +12,7 @@ import {PersonaService} from '../../services/persona.service';
 })
 export class MantenimientoPersonasComponent implements OnInit {
 
-  persona: Personas = new Personas(0,'','','','','',1,'');
+  persona: Personas = new Personas(0, '', '', '', '', null, 1, '');
   idPersona: any = '';
   selectedSexo: any = '';
   habilitarEditarEliminar = false;
@@ -44,57 +45,74 @@ export class MantenimientoPersonasComponent implements OnInit {
     Validators.pattern('valid'),
   ]);
 
-  constructor(private personaService: PersonaService) {
+  constructor(private personaService: PersonaService, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
   }
 
-  onCrearPersona(){
+  onCrearPersona() {
     this.persona.sexo = Number(this.selectedSexo);
     this.persona.idPersona = Number(this.idPersona);
-    this.persona.fechaNacimiento = new Date(this.persona.fechaNacimiento).toISOString().substring(0, 10);
     console.log('Objecto persona al crear');
-    console.log(this.persona);
     this.personaService.createPersona(this.persona);
+    console.log(this.persona);
+    this.openSnackBar("Persona creada!", "Crear");
+  //this.personaService.createPersona(new Personas(22, 'Hola', '', 'Mundo', '',new Date(),1,''));
   }
 
-  onBuscarById(){
+  onBuscarById() {
     this.personaService.findById(this.idPersona).subscribe(
       data => {
-        if(data !== null){
+        if (data !== null) {
           this.habilitarEditarEliminar = true;
           // @ts-ignore
           this.persona = data;
-          if(this.persona.sexo === 1 ){
+          if (this.persona.sexo === 1) {
             this.selectedSexo = '1';
-          } else if(this.persona.sexo === 2) {
+          } else if (this.persona.sexo === 2) {
             this.selectedSexo = '2';
           }
-        }else {
+          this.openSnackBar("Persona encontrada!", "Buscar");
+        } else {
           console.log('es nula la persona');
           this.limpiarCampos();
+          this.openSnackBar("Persona no encontrada!", "Buscar");
         }
         console.log(this.persona);
       }
     );
   }
 
-  onActualizarPersona(){
+  onActualizarPersona() {
     this.persona.sexo = Number(this.selectedSexo);
     this.persona.idPersona = Number(this.idPersona);
-    this.persona.fechaNacimiento = new Date(this.persona.fechaNacimiento).toISOString().substring(0, 10);
+    //this.persona.fechaNacimiento = new Date(this.persona.fechaNacimiento).toISOString().substring(0, 10);
     console.log('Objecto persona al Actualizar');
     console.log(this.persona);
     this.personaService.updatePersona(this.idPersona, this.persona);
     this.limpiarCampos();
+    this.openSnackBar("Persona Actualizada!", "Actualizar");
   }
 
-  limpiarCampos(){
-    this.persona = new Personas(null,'','','','','',null, '');
+  onDeletePersona() {
+    if (this.idPersona !== null) {
+      this.personaService.deletePersona(this.idPersona);
+      this.limpiarCampos();
+      this.openSnackBar("Persona Eliminada!", "Eliminar");
+    }
+  }
+
+  limpiarCampos() {
+    this.persona = new Personas(null, '', '', '', '', null, null, '');
     this.idPersona = '';
     this.selectedSexo = '';
     this.habilitarEditarEliminar = false;
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

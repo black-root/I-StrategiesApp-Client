@@ -87,7 +87,7 @@
           <div class="example-button-row">
             <button mat-stroked-button color="accent" (click)="onCrearPersona()" [disabled]="habilitarEditarEliminar">Crear</button>
             <button mat-stroked-button color="accent" (click)="onActualizarPersona()" [disabled]="!habilitarEditarEliminar" >Actualizar</button>
-            <button mat-stroked-button color="warn" [disabled]="!habilitarEditarEliminar" >Eliminar</button>
+            <button mat-stroked-button color="warn" [disabled]="!habilitarEditarEliminar" (click)="onDeletePersona()">Eliminar</button>
           </div>
         </section>
       </mat-card-content>
