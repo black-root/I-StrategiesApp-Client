@@ -1,18 +1,10 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
+table {
+  width: 100%;
+}
+mat-card {
   width: 100%;
 }
 
-.example-full-width {
+.contenido {
   width: 100%;
-}
-
-.example-70 {
-  width: 70%;
-}
-
-.section {
-  display: table;
-  margin: 8px;
 }

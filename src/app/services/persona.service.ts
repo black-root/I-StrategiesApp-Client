@@ -7,14 +7,12 @@ import {Personas} from '../entities/persona.model';
 })
 export class PersonaService {
   private URL = 'http://localhost:8080/api/strategies/personas';
-  private headers = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Credentials': 'true',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE'});
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  findAllPersonas(){
+    return this.httpClient.get(`${this.URL}`);
   }
 
   findById(id: any) {
